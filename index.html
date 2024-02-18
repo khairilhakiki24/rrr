@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ramadhan Planner 2024</title>
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+ <style>
+  body {
+  background: #28a745 url('https://img.freepik.com/premium-vector/islamic-ramadan-kareem-banner-background-gold-lantern-mandala-pattern-mosque-moon-abstract-luxury-islamic-elements-background_181182-19127.jpg') center/cover;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Container Styles */
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.8) 100%);
+}
+
+/* Heading Styles */
+h2 {
+  color: #007bff;
+}
+
+label {
+  font-size: 18px;
+  color: #333;
+}
+
+.form-check-label {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Button Styles */
+.btn-primary,
+.btn-danger,
+.btn-whatsapp,
+.btn-export,
+.btn-import {
+  width: 100%;
+  margin-top: 10px;
+  padding: 15px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-sizing: border-box;
+  border-radius: 10px;
+  display: block;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.btn-whatsapp {
+  background-color: #25d366;
+  color: #fff;
+}
+
+.btn-export {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.btn-import {
+  background-color: #007bff;
+  color: #fff;
+}
+
+/* Planner Item Styles */
+.planner-item {
+  margin-bottom: 20px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, rgba(248, 248, 248, 0.95) 0%, rgba(248, 248, 248, 0.9) 100%);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.planner-item strong {
+  font-size: 18px;
+  color: #333;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.planner-details {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.planner-item hr {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  border-color: #ddd;
+}
+
+.planner-item .buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.planner-item .btn-whatsapp,
+.planner-item .btn-danger {
+  width: 100%;
+}
+
+/* Hover Effect */
+.btn-primary:hover,
+.btn-danger:hover,
+.planner-item button.delete-btn:hover,
+.btn-whatsapp:hover,
+.btn-export:hover,
+.btn-import:hover {
+  background-color: darken(currentColor, 10%);
+}
+
+/* Navigation Drawer Styles */
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #007bff;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+/* Header Styles */
+.header {
+  background-color: #28a745;
+  padding: 15px;
+  text-align: center;
+  color: #fff;
+}
+
+.header img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.header h4 {
+  margin-bottom: 5px;
+}
+
+.header p {
+  font-size: 14px;
+  margin: 0;
+}
+
+/* Hamburger Icon Styles */
+    .hamburger-icon {
+      font-size: 24px;
+      cursor: pointer;
+      color: #fff;
+      position: absolute;
+      top: 15px;
+      left: 15px;
+    }
+
+</style>
+
+
+</head>
+<body>
+  <!-- Navigation Drawer -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#">Tentang Aplikasi</a>
+    <a href="#">Beri Nilai Aplikasi</a>
+    <a href="#">Privacy Policy</a>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main">
+    <!-- Header -->
+    <div class="header" onclick="openNav()">
+      <h4>Ramadhan Planner</h4>
+      <p>Rencanakan Ibadahmu agar menjadi lebih baik</p>
+    </div>
+
+  <div class="container">
+    <form id="ramadhanForm">
+      <div class="form-group">
+        <label for="date">Tanggal:</label>
+        <input type="date" id="date" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="name">Nama:</label>
+        <input type="text" id="name" class="form-control" required>
+      </div>
+      <div class="form-group">
+        <label for="whatsapp">Nomor WhatsApp:</label>
+        <input type="text" id="whatsapp" class="form-control" required>
+      </div>
+
+      <h4>Sholat:</h4>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="subuh">
+        <label class="form-check-label" for="subuh">Sholat Subuh</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="dzuhur">
+        <label class="form-check-label" for="dzuhur">Sholat Dzuhur</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="ashar">
+        <label class="form-check-label" for="ashar">Sholat Ashar</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="magrib">
+        <label class="form-check-label" for="magrib">Sholat Magrib</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="isya">
+        <label class="form-check-label" for="isya">Sholat Isya</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="tarawih">
+        <label class="form-check-label" for="tarawih">Tarawih</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="witir">
+        <label class="form-check-label" for="witir">Witir</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="tahajud">
+        <label class="form-check-label" for="tahajud">Tahajud</label>
+      </div>
+
+      <h4>Juz Ayat dan Surah:</h4>
+
+      <div class="form-group">
+        <label for="juz">Juz:</label>
+        <input type="text" id="juz" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="surah">Surah:</label>
+        <input type="text" id="surah" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label for="ayat">Ayat:</label>
+        <input type="text" id="ayat" class="form-control">
+      </div>
+
+      <h4>Dzikir dan Kebaikan:</h4>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="dzikirPagi">
+        <label class="form-check-label" for="dzikirPagi">Dzikir Pagi</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="dzikirPetang">
+        <label class="form-check-label" for="dzikirPetang">Dzikir Petang</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="sedekah">
+        <label class="form-check-label" for="sedekah">Sedekah</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="bacaIstighfar">
+        <label class="form-check-label" for="bacaIstighfar">Baca Istighfar</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="berbuatKebaikan">
+        <label class="form-check-label" for="berbuatKebaikan">Berbuat Kebaikan</label>
+      </div>
+
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="membacaAlQuran">
+        <label class="form-check-label" for="membacaAlQuran">Membaca Al-Quran</label>
+      </div>
+
+        <button type="button" class="btn btn-primary save-btn" onclick="saveData()">
+  <i class="fas fa-save"></i> Simpan
+</button>
+	 </br>
+<button type="button" class="btn btn-success export-btn" onclick="exportData()">
+  <i class="fas fa-download"></i> Export Data
+</button>
+<button type="button" class="btn btn-info import-btn" onclick="importData()">
+  <i class="fas fa-upload"></i> Import Data
+</button>
+<button type="button" class="btn btn-primary toggle-chart-btn" onclick="toggleCharts()">
+  <i class="fas fa-chart-bar"></i>Tampil dan Tutup Grafik
+</button>
+<div class="chart-container" id="sholatChartContainer" style="display: none;">
+  <canvas id="sholatChart" width="400" height="200"></canvas>
+</div>
+<div class="chart-container" id="juzAyatSurahChartContainer" style="display: none;">
+  <canvas id="juzAyatSurahChart" width="400" height="200"></canvas>
+</div>
+<div class="chart-container" id="dzikirKebaikanChartContainer" style="display: none;">
+  <canvas id="dzikirKebaikanChart" width="400" height="200"></canvas>
+   
+  </div>
+    </form>
+	 <div id="plannerList" class="mt-4">
+      <!-- Daftar kegiatan yang telah disimpan -->
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+ // Function to delete a cookie
+  function deleteCookie(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  }
+
+  // Example: Delete a cookie named 'your_cookie_name'
+  deleteCookie('your_cookie_name');
+function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById("main").style.marginLeft = "250px";
+    }
+
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById("main").style.marginLeft= "0";
+    }
+	
+function getHistory(type) {
+    const plannerData = JSON.parse(localStorage.getItem('plannerData')) || [];
+    const history = new Set();
+
+    plannerData.forEach(item => {
+        if (type === 'name') {
+            history.add(item.name);
+        } else if (type === 'whatsapp') {
+            history.add(item.whatsapp);
+        }
+    });
+
+    return Array.from(history);
+}
+
+function showHistory(type) {
+    const inputElement = document.getElementById(type);
+    const history = getHistory(type);
+
+    inputElement.setAttribute('list', `${type}-history`);
+
+    const dataList = document.createElement('datalist');
+    dataList.id = `${type}-history`;
+
+    history.forEach(item => {
+        const option = document.createElement('option');
+        option.value = item;
+        dataList.appendChild(option);
+    });
+
+    inputElement.parentNode.appendChild(dataList);
+}
+
+document.getElementById('name').addEventListener('focus', () => showHistory('name'));
+document.getElementById('whatsapp').addEventListener('focus', () => showHistory('whatsapp'));
+
+function saveData() {
+    const rawDate = document.getElementById('date').value;
+    const date = new Date(rawDate).toLocaleDateString('id-ID');
+
+    const name = document.getElementById('name').value;
+    const whatsapp = document.getElementById('whatsapp').value;
+    const subuh = document.getElementById('subuh').checked;
+    const dzuhur = document.getElementById('dzuhur').checked;
+    const ashar = document.getElementById('ashar').checked;
+    const magrib = document.getElementById('magrib').checked;
+    const isya = document.getElementById('isya').checked;
+    const tarawih = document.getElementById('tarawih').checked;
+    const witir = document.getElementById('witir').checked;
+    const tahajud = document.getElementById('tahajud').checked;
+    const juz = document.getElementById('juz').value;
+    const surah = document.getElementById('surah').value;
+    const ayat = document.getElementById('ayat').value;
+    const dzikirPagi = document.getElementById('dzikirPagi').checked;
+    const dzikirPetang = document.getElementById('dzikirPetang').checked;
+    const sedekah = document.getElementById('sedekah').checked;
+    const bacaIstighfar = document.getElementById('bacaIstighfar').checked;
+    const berbuatKebaikan = document.getElementById('berbuatKebaikan').checked;
+    const membacaAlQuran = document.getElementById('membacaAlQuran').checked;
+	  // Check if mandatory fields are filled
+    if (!date || !name || !whatsapp) {
+        alert('Tanggal, Nama, dan Nomor WhatsApp wajib diisi!');
+        return;
+    }
+ // Refresh the page after saving data
+    location.reload();
+
+
+    const data = {
+        date: date,
+        name: name,
+        whatsapp: whatsapp,
+        subuh: subuh,
+        dzuhur: dzuhur,
+        ashar: ashar,
+        magrib: magrib,
+        isya: isya,
+        tarawih: tarawih,
+        witir: witir,
+        tahajud: tahajud,
+        juz: juz,
+        surah: surah,
+        ayat: ayat,
+        dzikirPagi: dzikirPagi,
+        dzikirPetang: dzikirPetang,
+        sedekah: sedekah,
+        bacaIstighfar: bacaIstighfar,
+        berbuatKebaikan: berbuatKebaikan,
+        membacaAlQuran: membacaAlQuran,
+    };
+
+    let plannerData = JSON.parse(localStorage.getItem('plannerData')) || [];
+    plannerData.push(data);
+    plannerData.sort((a, b) => new Date(b.date) - new Date(a.date));
+    localStorage.setItem('plannerData', JSON.stringify(plannerData));
+
+    let nameHistory = JSON.parse(localStorage.getItem('nameHistory')) || [];
+    let whatsappHistory = JSON.parse(localStorage.getItem('whatsappHistory')) || [];
+
+    nameHistory.unshift(name);
+    whatsappHistory.unshift(whatsapp);
+
+    nameHistory = Array.from(new Set(nameHistory));
+    whatsappHistory = Array.from(new Set(whatsappHistory));
+
+    localStorage.setItem('nameHistory', JSON.stringify(nameHistory.slice(0, 5)));
+    localStorage.setItem('whatsappHistory', JSON.stringify(whatsappHistory.slice(0, 5)));
+
+    displayPlanner();
+}
+
+
+
+function deleteData(index) {
+    let plannerData = JSON.parse(localStorage.getItem('plannerData')) || [];
+    plannerData.splice(index, 1);
+    localStorage.setItem('plannerData', JSON.stringify(plannerData));
+
+    displayPlanner();
+}
+
+function sendToWhatsApp(index) {
+    let plannerData = JSON.parse(localStorage.getItem('plannerData')) || [];
+    let selectedData = plannerData[index];
+
+    // Check if the WhatsApp number is provided
+    if (!selectedData.whatsapp) {
+        alert('Nomor WhatsApp wajib diisi!');
+        return;
+    }
+
+    let message = `Ramadhan Planner\nNama: ${selectedData.name}\nTanggal: ${selectedData.date}\n\n`;
+    message += `Sholat\n`;
+    message += `Subuh: ${selectedData.subuh ? '✅' : '❌'}\n`;
+    message += `Dzuhur: ${selectedData.dzuhur ? '✅' : '❌'}\n`;
+    message += `Ashar: ${selectedData.ashar ? '✅' : '❌'}\n`;
+    message += `Magrib: ${selectedData.magrib ? '✅' : '❌'}\n`;
+    message += `Isya: ${selectedData.isya ? '✅' : '❌'}\n`;
+    message += `Tarawih: ${selectedData.tarawih ? '✅' : '❌'}\n`;
+    message += `Witir: ${selectedData.witir ? '✅' : '❌'}\n`;
+    message += `Tahajud: ${selectedData.tahajud ? '✅' : '❌'}\n\n`;
+
+    message += `Juz Ayat dan Surah\n`;
+    message += `Juz: ${selectedData.juz || '-'}\n`;
+    message += `Surah: ${selectedData.surah || '-'}\n`;
+    message += `Ayat: ${selectedData.ayat || '-'}\n\n`;
+
+    message += `Dzikir dan Kebaikan\n`;
+    message += `Dzikir Pagi: ${selectedData.dzikirPagi ? '✅' : '❌'}\n`;
+    message += `Dzikir Petang: ${selectedData.dzikirPetang ? '✅' : '❌'}\n`;
+    message += `Sedekah: ${selectedData.sedekah ? '✅' : '❌'}\n`;
+    message += `Baca Istighfar: ${selectedData.bacaIstighfar ? '✅' : '❌'}\n`;
+    message += `Berbuat Kebaikan: ${selectedData.berbuatKebaikan ? '✅' : '❌'}\n`;
+    message += `Membaca Al-Quran: ${selectedData.membacaAlQuran ? '✅' : '❌'}\n\n`;
+    message += `Pelaporan ini menggunakan aplikasi Ramadhan Planner https://play.google.com/store/apps/details?id=com.ramdhan.planner`;
+
+    let whatsappNumber = selectedData.whatsapp;
+    let whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+}
+
+// Function to export data as a JSON file
+function exportData() {
+    const plannerData = JSON.parse(localStorage.getItem('plannerData')) || [];
+    const dataToExport = JSON.stringify(plannerData);
+
+    const blob = new Blob([dataToExport], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Data Ramadhan Planner.json';
+    link.click();
+}
+
+// Function to import data from a JSON file
+function importData() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+
+    input.addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const importedData = JSON.parse(e.target.result);
+                localStorage.setItem('plannerData', JSON.stringify(importedData));
+                displayPlanner();
+            };
+            reader.readAsText(file);
+        }
+    });
+
+    input.click();
+}
+
+function toggleCharts() {
+    const chartContainers = document.querySelectorAll('.chart-container');
+
+    chartContainers.forEach(container => {
+        container.style.display = container.style.display === 'none' ? 'block' : 'none';
+    });
+}
+
+function updateChart() {
+    const plannerData = JSON.parse(localStorage.getItem('plannerData')) || [];
+    
+    const juzAyatSurahCompletionCounts = plannerData.map(item => {
+        const completionCount = (item.juz && item.surah && item.ayat) ? 1 : 0;
+        return completionCount;
+    });
+
+    const ctxJuzAyatSurah = document.getElementById('juzAyatSurahChart').getContext('2d');
+    const juzAyatSurahChart = new Chart(ctxJuzAyatSurah, {
+        type: 'bar',
+        data: {
+            labels: ['Juz Ayat dan Surah'],
+            datasets: [{
+                label: 'Jumlah Dilakukan',
+                data: juzAyatSurahCompletionCounts,
+                backgroundColor: 'rgba(255, 205, 86, 0.2)',
+                borderColor: 'rgba(255, 205, 86, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: Math.max(...juzAyatSurahCompletionCounts) + 1
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Grafik Juz Ayat dan Surah'
+                }
+            }
+        }
+    });
+
+    const sholatActivities = ['subuh', 'dzuhur', 'ashar', 'magrib', 'isya', 'tarawih', 'witir', 'tahajud'];
+    const dzikirKebaikanActivities = ['dzikirPagi', 'dzikirPetang', 'sedekah', 'bacaIstighfar', 'berbuatKebaikan', 'membacaAlQuran'];
+
+    const sholatCompletionCounts = sholatActivities.map(activity => {
+        const completionCount = plannerData.filter(item => item[activity]).length;
+        return completionCount;
+    });
+
+    const dzikirKebaikanCompletionCounts = dzikirKebaikanActivities.map(activity => {
+        const completionCount = plannerData.filter(item => item[activity]).length;
+        return completionCount;
+    });
+
+    const ctxSholat = document.getElementById('sholatChart').getContext('2d');
+    const sholatChart = new Chart(ctxSholat, {
+        type: 'bar',
+        data: {
+            labels: sholatActivities.map(activity => activity.replace(/[A-Z]/g, ' $&')),
+            datasets: [{
+                label: 'Jumlah Dilakukan',
+                data: sholatCompletionCounts,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: Math.max(...sholatCompletionCounts) + 1
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Grafik Sholat'
+                }
+            }
+        }
+    });
+
+    const ctxDzikirKebaikan = document.getElementById('dzikirKebaikanChart').getContext('2d');
+    const dzikirKebaikanChart = new Chart(ctxDzikirKebaikan, {
+        type: 'bar',
+        data: {
+            labels: dzikirKebaikanActivities.map(activity => activity.replace(/[A-Z]/g, ' $&')),
+            datasets: [{
+                label: 'Jumlah Dilakukan',
+                data: dzikirKebaikanCompletionCounts,
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    max: Math.max(...dzikirKebaikanCompletionCounts) + 1
+                }
+            },
+            plugins: {
+                title: {
+                    display: true,
+                    text: 'Grafik Dzikir dan Kebaikan'
+                }
+            }
+        }
+    });
+}
+
+// Call updateChart() when the page loads and after saving/deleting data
+document.addEventListener('DOMContentLoaded', () => {
+    updateChart();
+});
+
+
+
+function displayPlanner() {
+    const plannerList = document.getElementById('plannerList');
+    plannerList.innerHTML = '';
+
+    let plannerData = JSON.parse(localStorage.getItem('plannerData')) || [];
+
+    // Sort plannerData based on date in descending order
+    plannerData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    plannerData.forEach((item, index) => {
+        const listItem = document.createElement('div');
+        listItem.classList.add('planner-item');
+        listItem.innerHTML = `
+            <strong>${item.name}</strong><br>
+            Tanggal: ${item.date}<br><br>
+			Sholat<br>
+            Sholat Subuh: ${item.subuh ? '✅' : '❌'}
+            Sholat Dzuhur: ${item.dzuhur ? '✅' : '❌'}
+            Sholat Ashar: ${item.ashar ? '✅' : '❌'}
+            Sholat Magrib: ${item.magrib ? '✅' : '❌'}
+            Sholat Isya: ${item.isya ? '✅' : '❌'}<br>
+            Tarawih: ${item.tarawih ? '✅' : '❌'}
+            Witir: ${item.witir ? '✅' : '❌'}
+            Tahajud: ${item.tahajud ? '✅' : '❌'}<br><br>
+            Juz Ayat dan Surah<br>
+            Juz: ${item.juz || '-'}
+            Surah: ${item.surah || '-'}
+            Ayat: ${item.ayat || '-'}<br><br>
+            Dzikir dan Kebaikan<br>
+            Dzikir Pagi: ${item.dzikirPagi ? '✅' : '❌'}
+            Dzikir Petang: ${item.dzikirPetang ? '✅' : '❌'}
+            Sedekah: ${item.sedekah ? '✅' : '❌'}
+            Baca Istighfar: ${item.bacaIstighfar ? '✅' : '❌'}
+            Berbuat Kebaikan: ${item.berbuatKebaikan ? '✅' : '❌'}
+            Membaca Al-Quran: ${item.membacaAlQuran ? '✅' : '❌'}<br>
+			<button type="button" class="btn btn-whatsapp" onclick="sendToWhatsApp(${index})">
+  <i class="fab fa-whatsapp"></i> Kirim ke WhatsApp
+</button>
+            <button type="button" class="btn btn-danger" onclick="deleteData(${index})">
+  <i class="fas fa-trash"></i> Hapus
+</button>
+            <hr>
+        `;
+        plannerList.appendChild(listItem);
+    });
+}
+
+
+
+
+displayPlanner();
+</script>
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+
+</body>
+</html>
