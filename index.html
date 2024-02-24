@@ -6,9 +6,13 @@
   <title>Ramadhan Planner 2024</title>
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
- <style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <style>
   body {
-  background: #28a745 url('https://img.freepik.com/premium-vector/islamic-ramadan-kareem-banner-background-gold-lantern-mandala-pattern-mosque-moon-abstract-luxury-islamic-elements-background_181182-19127.jpg') center/cover;
+  background: #28a745 url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi896QyGRa9OLqNvsZHjRo0cI4UfBWi_NO3Ydo8f3QLCx1sBcOR4PGJDRa-f9XQ4d6naDBBnsMxqel7tIhILdAi4H9O76McX81ujkNGHaG_HBeueyasjPEdJNnxuQJP2oKLlnHYsM5CFnQRUQEF9NmDRtx-eXNWlqsseN-AqI7aDbhV-4YKgKNBtQulKZvR/s1600/_9d3f7b92-e6ff-4971-a1a8-896088680c45-transformed.jpeg') center;
+  background-size: cover;
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
@@ -211,6 +215,98 @@ label {
       top: 15px;
       left: 15px;
     }
+.content-container {
+  max-width: 80%;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  /* Tambahkan background image dan atur properti */
+  background-image: url('https://st.depositphotos.com/2693151/60376/i/450/depositphotos_603760906-stock-photo-white-paper-wrinkled-texture-abstract.jpg');
+  background-size: contain; /* Mengubah dari 'cover' menjadi 'contain' */
+  background-position: center; /* Untuk mengatur posisi gambar di tengah */
+}
+
+.quote-container,
+.hadith-container {
+  margin-bottom: 30px;
+}
+
+.quote-text,
+.hadith-text {
+  font-size: 24px;
+  line-height: 1.5;
+  color: #333;
+}
+
+.author,
+.hadith-reference {
+  font-size: 18px;
+  color: #666;
+}
+
+.owl-carousel .owl-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio (lebar:tinggi) */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+footer {
+  background-color: #f8f9fa;
+  padding: 50px 0;
+}
+
+footer h5 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+footer ul {
+  padding: 0;
+  list-style: none;
+}
+
+footer ul li {
+  margin-bottom: 10px;
+}
+
+footer ul li a {
+  color: #555;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer ul li a:hover {
+  color: #007bff;
+}
+
+@media (max-width: 768px) {
+  footer ul li {
+    margin-bottom: 15px;
+  }
+  footer ul li a {
+    font-size: 14px;
+  }
+}
+
 
 </style>
 
@@ -220,19 +316,24 @@ label {
   <!-- Navigation Drawer -->
   <div id="mySidenav" class="sidenav">
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">Tentang Aplikasi</a>
+    <a href="tentang.html">Tentang Aplikasi</a>
     <a href="#">Beri Nilai Aplikasi</a>
     <a href="#">Privacy Policy</a>
   </div>
 
   <!-- Main Content -->
   <div id="main">
-    <!-- Header -->
-    <div class="header" onclick="openNav()">
+     <div class="header" onclick="openNav()">
+      <i class="fas fa-bars"></i>
       <h4>Ramadhan Planner</h4>
       <p>Rencanakan Ibadahmu agar menjadi lebih baik</p>
     </div>
-
+	</br>
+	 <div class="container">
+    <div class="owl-carousel owl-theme" id="content-slider"></div>
+  </div>
+  </br>
+  
   <div class="container">
     <form id="ramadhanForm">
       <div class="form-group">
@@ -244,9 +345,10 @@ label {
         <input type="text" id="name" class="form-control" required>
       </div>
       <div class="form-group">
-        <label for="whatsapp">Nomor WhatsApp:</label>
-        <input type="text" id="whatsapp" class="form-control" required>
-      </div>
+  <label for="whatsapp">Nomor WhatsApp:</label>
+  <input type="text" id="whatsapp" class="form-control" pattern="[0-9]{13}" placeholder="Contoh: 6289570124429 atau 089570124429 " required>
+</div>
+
 
       <h4>Sholat:</h4>
 
@@ -349,6 +451,10 @@ label {
 <button type="button" class="btn btn-info import-btn" onclick="importData()">
   <i class="fas fa-upload"></i> Import Data
 </button>
+<div class="clock text-center mb-4" id="clock"></div>
+      <div id="jadwalSholat" class="mt-4"></div>
+      <div id="countdown" class="text-center"></div>
+      <button id="getJadwal" class="btn btn-primary btn-block mt-4">Tampilkan Jadwal Sholat</button>
 <button type="button" class="btn btn-primary toggle-chart-btn" onclick="toggleCharts()">
   <i class="fas fa-chart-bar"></i>Tampil dan Tutup Grafik
 </button>
@@ -366,16 +472,66 @@ label {
 	 <div id="plannerList" class="mt-4">
       <!-- Daftar kegiatan yang telah disimpan -->
     </div>
+	
+	
+	
+	<footer>
+	
+	<div class="container">
+      <!-- Application Description -->
+      <div class="jumbotron">
+        <h1 class="display-4">Aplikasi Ramadhan Planner</h1>
+        <p class="lead">Merencanakan Ibadah Ramadhan dengan Lebih Mudah</p>
+        <hr class="my-4">
+        <p>Aplikasi Ramadhan Planner adalah alat praktis yang dirancang untuk membantu umat Muslim merencanakan dan melacak ibadah mereka selama bulan Ramadhan. Dengan fitur-fitur yang intuitif dan mudah digunakan, aplikasi ini memungkinkan pengguna untuk mencatat berbagai kegiatan ibadah seperti sholat, dzikir, sedekah, membaca Al-Quran, dan banyak lagi. Dengan demikian, pengguna dapat mengatur jadwal ibadah mereka dengan lebih efisien dan efektif.</p>
+		<p>Dibuat Oleh Khairil Hakiki A.Md </p>
+      </div>
+	  
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <ul class="list-unstyled">
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="col-md-6 text-md-right">
+        <ul class="list-unstyled">
+          <li><a href="#">Download Aplikasi</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
- // Function to delete a cookie
-  function deleteCookie(name) {
-    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-  }
 
-  // Example: Delete a cookie named 'your_cookie_name'
-  deleteCookie('your_cookie_name');
+var swiper = new Swiper('.swiper-container', {
+    slidesPerView: 'auto',
+    centeredSlides: true,
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  });
+// Function to check internet connection
+function checkInternetConnection() {
+    const img = document.createElement('img');
+    img.src = 'https://www.google.com/images/phd/px.gif'; // Google's tiny transparent image
+    img.onload = () => {
+        // Internet connection is active
+        console.log('Internet connection is active');
+    };
+    img.onerror = () => {
+        // Internet connection is not active
+        alert('Koneksi internet tidak aktif. Silakan periksa koneksi Anda.');
+    };
+}
+
+// Call the function to check internet connection when the page loads
+document.addEventListener('DOMContentLoaded', checkInternetConnection);
+
 function openNav() {
       document.getElementById("mySidenav").style.width = "250px";
       document.getElementById("main").style.marginLeft = "250px";
@@ -445,14 +601,12 @@ function saveData() {
     const bacaIstighfar = document.getElementById('bacaIstighfar').checked;
     const berbuatKebaikan = document.getElementById('berbuatKebaikan').checked;
     const membacaAlQuran = document.getElementById('membacaAlQuran').checked;
-	  // Check if mandatory fields are filled
-    if (!date || !name || !whatsapp) {
+
+    // Check if mandatory fields are filled
+    if (!rawDate || !name || !whatsapp) { // Additional check for rawDate
         alert('Tanggal, Nama, dan Nomor WhatsApp wajib diisi!');
         return;
     }
- // Refresh the page after saving data
-    location.reload();
-
 
     const data = {
         date: date,
@@ -494,18 +648,30 @@ function saveData() {
     localStorage.setItem('nameHistory', JSON.stringify(nameHistory.slice(0, 5)));
     localStorage.setItem('whatsappHistory', JSON.stringify(whatsappHistory.slice(0, 5)));
 
-    displayPlanner();
+    displayPlanner(); // Menampilkan data setelah penyimpanan
+    location.reload(); // Me-refresh halaman setelah penyimpanan data
 }
-
 
 
 function deleteData(index) {
     let plannerData = JSON.parse(localStorage.getItem('plannerData')) || [];
-    plannerData.splice(index, 1);
-    localStorage.setItem('plannerData', JSON.stringify(plannerData));
+    
+    // Mendapatkan indeks yang sesuai berdasarkan urutan tampilan
+    let displayIndex = plannerData.length - 1 - index;
 
-    displayPlanner();
+    if (displayIndex >= 0 && displayIndex < plannerData.length) {
+        plannerData.splice(displayIndex, 1);
+        localStorage.setItem('plannerData', JSON.stringify(plannerData));
+        displayPlanner(); // Menampilkan data setelah penghapusan
+
+        // Refresh halaman
+        location.reload();
+    } else {
+        console.error('Indeks data tidak valid.');
+    }
 }
+
+
 
 function sendToWhatsApp(index) {
     let plannerData = JSON.parse(localStorage.getItem('plannerData')) || [];
@@ -516,6 +682,9 @@ function sendToWhatsApp(index) {
         alert('Nomor WhatsApp wajib diisi!');
         return;
     }
+
+    // Extracting the phone number from input
+    let phoneNumber = selectedData.whatsapp.replace(/^0/, '62'); // convert '0895701244428' to '62895701244428'
 
     let message = `Ramadhan Planner\nNama: ${selectedData.name}\nTanggal: ${selectedData.date}\n\n`;
     message += `Sholat\n`;
@@ -542,10 +711,10 @@ function sendToWhatsApp(index) {
     message += `Membaca Al-Quran: ${selectedData.membacaAlQuran ? '✅' : '❌'}\n\n`;
     message += `Pelaporan ini menggunakan aplikasi Ramadhan Planner https://play.google.com/store/apps/details?id=com.ramdhan.planner`;
 
-    let whatsappNumber = selectedData.whatsapp;
-    let whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+    let whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
 }
+
 
 // Function to export data as a JSON file
 function exportData() {
@@ -573,6 +742,7 @@ function importData() {
                 const importedData = JSON.parse(e.target.result);
                 localStorage.setItem('plannerData', JSON.stringify(importedData));
                 displayPlanner();
+                location.reload(); // Menyegarkan halaman setelah mengimpor data
             };
             reader.readAsText(file);
         }
@@ -703,6 +873,117 @@ document.addEventListener('DOMContentLoaded', () => {
     updateChart();
 });
 
+ document.getElementById('getJadwal').addEventListener('click', function() {
+    getLocation();
+  });
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+      alert("Geolocation tidak didukung oleh browser Anda.");
+    }
+  }
+
+  function showPosition(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    getPrayerTimes(latitude, longitude);
+  }
+
+  function showError(error) {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        alert("Akses lokasi ditolak oleh pengguna.");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert("Informasi lokasi tidak tersedia.");
+        break;
+      case error.TIMEOUT:
+        alert("Waktu permintaan lokasi telah habis.");
+        break;
+      case error.UNKNOWN_ERROR:
+        alert("Terjadi kesalahan yang tidak diketahui.");
+        break;
+    }
+  }
+
+  function getPrayerTimes(latitude, longitude) {
+    fetch(`https://api.aladhan.com/v1/calendar?latitude=${latitude}&longitude=${longitude}&method=2`)
+      .then(response => response.json())
+      .then(data => {
+        var today = new Date();
+        var date = today.getDate();
+        var month = today.getMonth() + 1;
+        var year = today.getFullYear();
+        var prayerTimes = data.data[date - 1].timings;
+
+        // Tampilkan jadwal sholat
+        document.getElementById('jadwalSholat').innerHTML = `
+          <h4>Jadwal Sholat Hari Ini:</h4>
+          <ul>
+            <li>Subuh: ${prayerTimes.Fajr}</li>
+            <li>Dzuhur: ${prayerTimes.Dhuhr}</li>
+            <li>Ashar: ${prayerTimes.Asr}</li>
+            <li>Maghrib: ${prayerTimes.Maghrib}</li>
+            <li>Isya: ${prayerTimes.Isha}</li>
+          </ul>
+        `;
+
+        // Hitung mundur menuju waktu sholat berikutnya
+        var currentTime = today.getHours() * 3600 + today.getMinutes() * 60 + today.getSeconds();
+        var nextPrayerTime;
+        var nextPrayerName;
+        if (currentTime < parseTime(prayerTimes.Fajr)) {
+          nextPrayerTime = parseTime(prayerTimes.Fajr);
+          nextPrayerName = "Subuh";
+        } else if (currentTime < parseTime(prayerTimes.Dhuhr)) {
+          nextPrayerTime = parseTime(prayerTimes.Dhuhr);
+          nextPrayerName = "Dzuhur";
+        } else if (currentTime < parseTime(prayerTimes.Asr)) {
+          nextPrayerTime = parseTime(prayerTimes.Asr);
+          nextPrayerName = "Ashar";
+        } else if (currentTime < parseTime(prayerTimes.Maghrib)) {
+          nextPrayerTime = parseTime(prayerTimes.Maghrib);
+          nextPrayerName = "Maghrib";
+        } else if (currentTime < parseTime(prayerTimes.Isha)) {
+          nextPrayerTime = parseTime(prayerTimes.Isha);
+          nextPrayerName = "Isya";
+        } else {
+          nextPrayerTime = parseTime(prayerTimes.Fajr) + 86400; // Jika sudah lewat waktu Isya, hitung untuk Shubuh besok
+          nextPrayerName = "Subuh";
+        }
+        
+        var countdownSeconds = nextPrayerTime - currentTime;
+        var hours = Math.floor(countdownSeconds / 3600);
+        var minutes = Math.floor((countdownSeconds % 3600) / 60);
+        var seconds = countdownSeconds % 60;
+
+        document.getElementById('countdown').innerHTML = `
+          <h4>Hitung Mundur Menuju ${nextPrayerName}:</h4>
+          <div id="timer">${hours} Jam ${minutes} Menit ${seconds} Detik</div>
+        `;
+
+        // Perbarui hitung mundur setiap detik
+        setInterval(function() {
+          countdownSeconds--;
+          hours = Math.floor(countdownSeconds / 3600);
+          minutes = Math.floor((countdownSeconds % 3600) / 60);
+          seconds = countdownSeconds % 60;
+          document.getElementById('timer').innerHTML = `${hours} Jam ${minutes} Menit ${seconds} Detik`;
+        }, 1000);
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert("Terjadi kesalahan dalam mendapatkan jadwal sholat.");
+      });
+  }
+
+  function parseTime(timeString) {
+    var time = timeString.split(':');
+    return parseInt(time[0]) * 3600 + parseInt(time[1]) * 60;
+  }
+
 
 
 function displayPlanner() {
@@ -714,13 +995,16 @@ function displayPlanner() {
     // Sort plannerData based on date in descending order
     plannerData.sort((a, b) => new Date(b.date) - new Date(a.date));
 
+    // Reverse the plannerData array so that the newest data appears first
+    plannerData.reverse();
+
     plannerData.forEach((item, index) => {
         const listItem = document.createElement('div');
         listItem.classList.add('planner-item');
         listItem.innerHTML = `
             <strong>${item.name}</strong><br>
             Tanggal: ${item.date}<br><br>
-			Sholat<br>
+            Sholat<br>
             Sholat Subuh: ${item.subuh ? '✅' : '❌'}
             Sholat Dzuhur: ${item.dzuhur ? '✅' : '❌'}
             Sholat Ashar: ${item.ashar ? '✅' : '❌'}
@@ -740,17 +1024,18 @@ function displayPlanner() {
             Baca Istighfar: ${item.bacaIstighfar ? '✅' : '❌'}
             Berbuat Kebaikan: ${item.berbuatKebaikan ? '✅' : '❌'}
             Membaca Al-Quran: ${item.membacaAlQuran ? '✅' : '❌'}<br>
-			<button type="button" class="btn btn-whatsapp" onclick="sendToWhatsApp(${index})">
-  <i class="fab fa-whatsapp"></i> Kirim ke WhatsApp
-</button>
+            <button type="button" class="btn btn-whatsapp" onclick="sendToWhatsApp(${index})">
+                <i class="fab fa-whatsapp"></i> Kirim ke WhatsApp
+            </button>
             <button type="button" class="btn btn-danger" onclick="deleteData(${index})">
-  <i class="fas fa-trash"></i> Hapus
-</button>
+                <i class="fas fa-trash"></i> Hapus
+            </button>
             <hr>
         `;
         plannerList.appendChild(listItem);
     });
 }
+
 
 
 
@@ -763,7 +1048,11 @@ displayPlanner();
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  
-
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
